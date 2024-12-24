@@ -1,4 +1,3 @@
-from transformers import AutoTokenizer, AutoModel
 from langchain_openai import OpenAIEmbeddings
 from flask import Flask, request
 from dotenv import load_dotenv
