@@ -27,7 +27,7 @@ def get_response(question):
     results = index.query(
         namespace="",  # Replace with your namespace
         vector=embedded,  # Convert to list if necessary
-        top_k=7,  # Number of top similar results you want
+        top_k=4,  # Number of top similar results you want
         include_values=False,  # Optional: Exclude or include vector values in results
         include_metadata=True  # Optional: Include metadata in results
     )
