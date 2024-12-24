@@ -1,6 +1,5 @@
 from transformers import AutoTokenizer, AutoModel
-from langchain_community.vectorstores import Pinecone
-from embed import CustomEmbeddings
+from langchain_openai import OpenAIEmbeddings
 from flask import Flask, request
 from dotenv import load_dotenv
 from pinecone import Pinecone
@@ -15,27 +14,20 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 app = Flask(__name__)
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
-
-MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
-TOKENIZER = AutoTokenizer.from_pretrained(MODEL_NAME)
-MODEL = AutoModel.from_pretrained(MODEL_NAME)
-
-custom_embeddings = CustomEmbeddings(MODEL, TOKENIZER)
-
-
+embeddings = OpenAIEmbeddings()
 with open("vids.json", encoding="utf-8") as f:
     videos = json.load(f)
 
-index_name = "langchainvector"
+index_name = "famma"
 index = pc.Index(index_name)
 
 def get_response(question):
-    query_embedding = custom_embeddings.embed_query(question)  # Call the method on the instance
+    embedded = embeddings.embed_query(question)  # Call the method on the instance
 
     # Step 2: Perform similarity search in the Pinecone index
     results = index.query(
         namespace="",  # Replace with your namespace
-        vector=query_embedding.tolist(),  # Convert to list if necessary
+        vector=embedded,  # Convert to list if necessary
         top_k=7,  # Number of top similar results you want
         include_values=False,  # Optional: Exclude or include vector values in results
         include_metadata=True  # Optional: Include metadata in results
