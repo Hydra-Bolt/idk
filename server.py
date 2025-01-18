@@ -36,7 +36,7 @@ def get_response(question):
 
     # Prompt for Groq API to identify relevant headings
     prompt = f"""
-        Answer the user's question in Spanish using only the provided text. Keep your response friendly, professional, and include emojis in the answer. If you find a relevant video from the provided list that can help strongly, recommend the url of it with the answer. Else, give answer without it. Do not mention the text source nor recommend unnecessary videos.
+        Answer the user's question in Spanish using only the provided text. Do not repeat the user question. Keep your response friendly and include some emojis in the answer. If you find a relevant video from the provided list that can help strongly, recommend the url of only that video with the answer. Else, give answer without it. Do not mention the text source or unnecessary videos.
         Inputs:
         Question: {question}
         Text: {combined_text}
