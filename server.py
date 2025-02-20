@@ -36,7 +36,7 @@ def get_response(question):
 
     # Prompt for Groq API to identify relevant headings
     prompt = f"""
-        Answer the user's question in Spanish using only the provided text. If the text is not relevant to question, just say you dont know the answer. Reply greetings with just the greeting. Compliment the question and add an emoji. Do not repeat the user question, reply as if it was asked to you and you are replying. Keep your response friendly. You may recommend a youtube video id it seems extremely relevant with the question. Else, give answer without it. Do not mention the text source or unnecessary videos.
+        Answer the user's question in Spanish using only the provided text. Reply greetings with just the greeting. If the text is not relevant to question, just say you dont know the answer. Compliment the question and add an emoji. Do not repeat the user question, reply as if it was asked to you and you are replying. Keep your response friendly. You may recommend a youtube video id it seems extremely relevant with the question. Else, give answer without it. Do not mention the text source or unnecessary videos.
         Inputs:
         Question: {question}
         Text: {combined_text}
@@ -50,7 +50,7 @@ def get_response(question):
             messages=[
                 {
                     "role": "system",
-                    "content": "You are responsible to find relevant headings that can help answer question",
+                    "content": "You are responsible to answer user in spanish",
                 },
                 {"role": "user", "content": prompt},
             ],
