@@ -37,12 +37,16 @@ def get_response(question):
     # Prompt for Groq API to identify relevant headings
     prompt = f"""
     Respond to the user's query in a short and conversational manner using some emojis in Spanish. Keep it friendly and direct, like a chatbot.  
-    you may use the text to answer the query only if it relates to it.
+    - If the query is a greeting, reply with a simple and friendly greeting.  
+    - Use the provided text only if it's relevant to the query.  
+    - Keep responses concise and avoid unnecessary explanations.  
+    
     Inputs:  
     Query: {question}  
     Text: {combined_text}  
     Videos: {videos}  
 """
+
 
 
 
