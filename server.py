@@ -36,12 +36,20 @@ def get_response(question):
 
     # Prompt for Groq API to identify relevant headings
     prompt = f"""
-        Answer the user's question in Spanish using only the provided text. Reply greetings with just the greeting. If the text is not relevant to question, just say you dont know the answer. Compliment the question and add an emoji. Do not repeat the user question, reply as if it was asked to you and you are replying. Keep your response friendly. You may recommend a youtube video id it seems extremely relevant with the question. Else, give answer without it. Do not mention the text source or unnecessary videos.
-        Inputs:
-        Question: {question}
-        Text: {combined_text}
-        Videos: {videos}
-    """
+    Respond to the user's question naturally and conversationally in Spanish. Keep the tone friendly and engaging.  
+    - If the question is a greeting, reply with an appropriate greeting.  
+    - If the provided text has relevant information, use it to answer.  
+    - If the text isn't relevant, simply say you don't know but keep the response warm.  
+    - Add a small compliment or positive remark about the question and include an emoji.  
+    - If a YouTube video is highly relevant, feel free to suggest it, otherwise, just answer without extra links.  
+    - Do not mention where the text comes from or include unnecessary videos.  
+      
+    Inputs:  
+    Question: {question}  
+    Text: {combined_text}  
+    Videos: {videos}  
+"""
+
 
     try:
         # Generate completion from Groq API
